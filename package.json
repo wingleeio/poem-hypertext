@@ -1,0 +1,6 @@
+{
+    "name": "poem-hypertext",
+    "dependencies": {
+        "tailwindcss": "^3.4.14"
+    }
+}

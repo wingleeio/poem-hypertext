@@ -1,0 +1,9 @@
+[package]
+name = "poem-hypertext"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+hypertext = { version = "0.5.1" }
+poem = { version = "3.1.3", features = ["session", "static-files"] }
+tokio = { version = "1.41.0", features = ["full"] }
