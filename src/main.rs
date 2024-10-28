@@ -21,6 +21,7 @@ use tokio_stream::wrappers::IntervalStream;
 trait HtmxAttributes: GlobalAttributes {
     const hx_post: Attribute = Attribute;
     const hx_target: Attribute = Attribute;
+    const hx_swap: Attribute = Attribute;
     const hx_ext: Attribute = Attribute;
     const sse_connect: Attribute = Attribute;
     const sse_swap: Attribute = Attribute;
@@ -60,11 +61,16 @@ async fn hello_world(session: &Session) -> Html<String> {
             body class="flex flex-col gap-2 p-4" hx-ext="sse" sse-connect="/timer" {
                 h1 { "Hello, World!" }
                 p { "Welcome to my website!" }
-                p sse-swap="timer" { "0" }
+                p {
+                    span sse-swap="timer" {
+                        "0"
+                    }
+                    " seconds since the page was loaded."
+                }
                 div class="flex gap-2" {
-                    button class="border rounded-sm px-4 py-2" hx-post="/decrement" hx-target="#counter" { "-" }
-                    div id="counter" class="flex justify-center bg-muted rounded-sm px-4 py-2 w-16" { (count) }
-                    button class="border rounded-sm px-4 py-2" hx-post="/increment" hx-target="#counter" { "+" }
+                    button class="border rounded-md px-4 py-2 hover:bg-slate-100" hx-post="/decrement" hx-target="#counter" { "-" }
+                    div id="counter" class="flex justify-center bg-slate-100 rounded-md px-4 py-2 w-16" { (count) }
+                    button class="border rounded-md px-4 py-2 hover:bg-slate-100" hx-post="/increment" hx-target="#counter" { "+" }
                 }
             }
         }
